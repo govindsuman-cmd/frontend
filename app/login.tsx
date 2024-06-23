@@ -13,6 +13,7 @@ export default function Login() {
       }}
     >
       <Text style={tw `text-2xl`}>This is Login Page</Text>
+      
       <View style={tw `my-2`}>
       <Button 
       title="Go to Home page" 
