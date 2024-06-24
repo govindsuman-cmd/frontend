@@ -12,6 +12,7 @@ export default function Home() {
       <Tab.Screen name="tabfirst" component={TabFirst}
         options={{
           tabBarLabel: 'Android',
+          title:"Android",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="logo-android" color={color} size={size} />
           ),
@@ -20,6 +21,7 @@ export default function Home() {
       <Tab.Screen name="tabsec" component={TabSec} 
         options={{
           tabBarLabel: 'IOS',
+          title:"IOS",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="logo-apple" color={color} size={size} />
           ),
