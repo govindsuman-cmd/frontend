@@ -1,21 +1,20 @@
-import React, { Component } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import Index from "./index"
-import Login from './login'
-import Signin from './signin'
-import Home from './home'
+import { Stack } from 'expo-router';
 
-const Stack = createStackNavigator()
-
-export default function RootLayout() {
+export default function Layout() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="index" options={{ title: 'Landing Page' }} component={Index} />
-      <Stack.Screen name="login" options={{ title: 'Login Page' }} component={Login} />
-      <Stack.Screen name="home" options={{ title: 'Home Page' }} component={Home} />
-      <Stack.Screen name="signin" options={{ title: 'SignIn Page' }} component={Signin} />
-      
-    </Stack.Navigator>
+    <Stack
+      screenOptions={{
+        title:'home',
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      {/* Optionally configure static options outside the route.*/}
+      <Stack.Screen name="index" options={{title:"Home"}} />
+    </Stack>
   );
 }

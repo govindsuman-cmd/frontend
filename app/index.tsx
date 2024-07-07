@@ -1,20 +1,12 @@
-import * as React from 'react';
-import { Button, Text, View } from "react-native";
-import tw from 'twrnc';
-import { useNavigation } from '@react-navigation/native';
-import Login from './login';
-export default function Index() {
-  const navigation = useNavigation();
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text style={tw `text-2xl`}>This is Landing page</Text>
-      <Button title="Login" onPress={()=>navigation.navigate("login")}/>
-    </View>
-  );
+import Layout from '@/components/layout/Layout';
+import { Link } from 'expo-router';
+import { View } from 'react-native';
+
+export default function Root() {
+return (<Layout>
+  <View className='mt-9 mx-auto' >
+    <Link href="/screens/coma"className='bg-blue-400 px-2 py-1 rounded-lg text-white justify-center items-center w-3/5 mt-9 px-auto text-xl my-auto'>
+    Navigate to alpha route</Link>
+  </View>
+  </Layout>);
 }

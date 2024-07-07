@@ -3,7 +3,7 @@ import tw from 'twrnc';
 import { useNavigation } from '@react-navigation/native';
 
 export default function TabFirst() {
-   
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -13,7 +13,7 @@ export default function TabFirst() {
       }}
     >
       <Text style={tw `text-2xl`}>This is Tab 1</Text>
-      
+    
     </View>
   );
 }
