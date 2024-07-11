@@ -2,10 +2,12 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import Layout from '@/components/layout/Layout'
 
-export default function bravo() {
+const Alpha = () => {
   return (
-    <View>
-      <Text>bravo tab</Text>
-    </View>
+    <Layout className='bg-red-300'>
+      <Text>alpha</Text>
+    </Layout>
   )
 }
+
+export default Alpha

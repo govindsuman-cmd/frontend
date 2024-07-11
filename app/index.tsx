@@ -1,12 +1,20 @@
+import Banner from '@/components/Banner';
+import Categories from '@/components/categories';
 import Layout from '@/components/layout/Layout';
+import Product from '@/components/Product';
 import { Link } from 'expo-router';
 import { View } from 'react-native';
 
 export default function Root() {
 return (<Layout>
-  <View className='mt-9 mx-auto' >
-    <Link href="/screens/coma"className='bg-blue-400 px-2 py-1 rounded-lg text-white justify-center items-center w-3/5 mt-9 px-auto text-xl my-auto'>
-    Navigate to alpha route</Link>
+  <View className=' mx-auto' >
+    
+    <View className='mx-auto bg-gray-200'>
+    <View className=' h-[11vh]'>
+      <Categories className='my-auto'/></View>
+    <View><Banner/></View>
+    <View className='mt-2 w-full bg-red-300'><Product/></View>
+    </View>
   </View>
   </Layout>);
 }

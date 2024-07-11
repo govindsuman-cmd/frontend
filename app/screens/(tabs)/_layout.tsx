@@ -1,7 +1,9 @@
+import Layout from "@/components/layout/Layout"
 import { Tabs } from "expo-router"
 
 export default function TabLayout(){
-return(<Tabs screenOptions={{
+return(<Layout>
+  <Tabs screenOptions={{
         title:'rog',
         
         headerStyle: {
@@ -14,5 +16,6 @@ return(<Tabs screenOptions={{
       }} >
         <Tabs.Screen name="coma" options={{title:"manto", headerShown: false}}/>
         <Tabs.Screen name="bravo" options={{headerShown: false, title:"roma"}}/>
-        </Tabs>)
+        </Tabs>
+</Layout>)
 }
