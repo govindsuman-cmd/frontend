@@ -6,10 +6,7 @@ import { router } from 'expo-router';
 export default function Product() {
 
   const handleButtonClick=(id)=>{
-    router.push({
-      pathname: '/screens/product',
-      params: {id:id},
-    })
+    router.push('login')
   }
 
   return (

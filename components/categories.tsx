@@ -11,7 +11,7 @@ export default function Categories() {
       <View className='flex flex-row gap-3 my-3'>{categoriesData.map((item)=>(<View key={item._id} 
       className='border-2 my-auto py-2 px-3 rounded-xl'>
         <TouchableOpacity onPress={() => router.push({
-          pathname: '/screens/coma',
+          pathname: '/coma',
           params: {id:item.name},
         })}>
               <AntDesign name={item.icon} size={20} />

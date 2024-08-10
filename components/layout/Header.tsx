@@ -12,9 +12,9 @@ export default function Header() {
   }
 
   return (
-    <View style={styles.container} className='mb-3' >
+    <View style={styles.container} className='' >
       <View style={styles.inputContainer}>
-        <TouchableOpacity onPress={handleSearch}>
+        {/* <TouchableOpacity onPress={handleSearch}>
         <Icon name="search" size={20} color="#000" style={styles.icon} />
         </TouchableOpacity>
         <TextInput
@@ -23,7 +23,7 @@ export default function Header() {
           placeholderTextColor="#888"
           value={searchText}
           onChangeText={(text)=>setSearchText(text)}
-        />
+        /> */}
       </View>
     </View>
   );

@@ -1,9 +1,12 @@
 import { Stack } from 'expo-router';
-import product from './screens/product';
+import product from './screens/product/product';
+import { AuthProvider } from '@/context/auth';
+
 
 export default function Layout() {
   return (
-    <Stack
+    
+      <Stack
       screenOptions={{
         title:'home',
         headerShown: false,
@@ -14,10 +17,14 @@ export default function Layout() {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-      }}>
+      }}
+      >
       {/* Optionally configure static options outside the route.*/}
-      <Stack.Screen name="index" options={{title:"Home"}} />
-      <Stack.Screen name='product' options={{title:"Product"}}/>
+      <Stack.Screen name="homepage" 
+       
+      options={{title:"Home"}} />
+      <Stack.Screen name='product' options={{title:"Product"}} />
     </Stack>
+    
   );
 }
