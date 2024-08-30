@@ -1,12 +1,13 @@
 import { Button, Text, ToastAndroid, TouchableOpacity, View } from "react-native";
 import tw from 'twrnc';
 import { useNavigation } from '@react-navigation/native';
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import InputBox from "@/components/InputBox";
 import { router, useLocalSearchParams } from "expo-router";
 import axios from 'axios';
-import { useAuth } from "@/context/auth";
+import AsyncStorage from '@react-native-async-storage/async-storage'; // To store token locally
 import Layout from "@/components/layout/Layout";
+import { REACT_APP_API_ } from '@env';
 
 export default function Login() {
 
@@ -21,40 +22,48 @@ export default function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [auth, setAuth] = useAuth();
 
-  const handleLogin = async (e) => {
+  const handleLogin = async () => {
     if (!email || !password) {
       return alert("Please enter all fields");
     }
 
     try {
-      // Here you can make an API call to verify the email and password
+      // Send login request to backend
+      const res = await axios.post(`http://10.0.2.2:4000/api/v1/auth/login`, { email, password });
 
-      if (role === 'Admin') {
-        router.push({
-          pathname:'admin/adminDasboard',
-          params: { role: role }
-        }) // Navigate to 'coma' if role is Admin
-      } else if (role === 'Student') {
-        router.push({
-          pathname:'student/studentDashboard',
-          params: { role: role }
-        }); // Navigate to product screen if role is Student
-      } else if (role==='Instructor'){
-        router.push({
-          pathname:'instructor/instructorDashboard',
-          params: { role: role }
-        })
-      } 
-      else {
-        alert("Invalid role");
-      }
+      // Get the token and user info from the response
+      const { token, user } = res.data;
+      // console.log(res)
+      // Store the token in AsyncStorage
+       await AsyncStorage.setItem('token', token);
+      // Role-based redirection
+      
+        if (user.role === 'Admin') {
+          router.push({
+            pathname: 'admin/adminDasboard',
+            params: { role: user.role }
+          });
+        } else if (user.role === 'Student') {
+          router.push({
+            pathname: 'student/studentDashboard',
+            params: { role: user.role }
+          });
+        } else if (user.role === 'Instructor') {
+          router.push({
+            pathname: 'instructor/instructorDashboard',
+            params: { role: user.role }
+          });
+        } else {
+          alert("Invalid role");
+        }
+      
+
     } catch (error) {
-      console.error(error);
-      alert("Login failed");
+      console.error(JSON.stringify(error, null, 2)); // Full error details
+      alert("Login failure: " + error.message);
     }
-  }
+  };
 
   return (
     <Layout>
@@ -68,7 +77,7 @@ export default function Login() {
         <Text style={tw `text-2xl`}>Login as {role}</Text>
 
         <InputBox
-          autoComplete={email}
+          autoComplete="email"
           value={email}
           setValue={setEmail}
           placeholder={'Enter your Email Address'}
@@ -76,7 +85,7 @@ export default function Login() {
         <InputBox
           value={password}
           setValue={setPassword}
-          autoComplete={password}
+          autoComplete="password"
           secureTextEntry={true}
           placeholder={'Enter your Password'}
         />
@@ -88,7 +97,7 @@ export default function Login() {
         </TouchableOpacity>
 
         <Text className='mt-4'>
-          Not a user yet ? Please{" "}
+          Not a user yet? Please{" "}
           <Text className='text-blue-500'
             onPress={() => router.push('signin')}
           >
